@@ -61,7 +61,7 @@
             }
 
      }
-      public function PrepareSel($sql,$en){
+      public function PrepareSel($sql,$cn){
 
              $prepare=self::$mysqli->prepare($sql);
               //判断预编译成功与否
@@ -74,7 +74,7 @@
             }
 
              //绑定参数
-             $prepare->bind_param("s",$en);
+             $prepare->bind_param("s",$cn);
              //执行查询
              $prepare->execute();
              $result=$prepare->get_result();

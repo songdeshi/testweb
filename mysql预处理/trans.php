@@ -1,22 +1,43 @@
 <?php 
     require_once 'prepare.class.php';
-    $en=$_POST['words'];
-   if (!isset($en)) {
+    if (isset($_POST['dede'])) {
+        if ($_POST['dede']==1) {
 
-   	  	echo "请重新输入";
-   	  	# code...
-    }else{
-    	if (strlen($en)==0) {
-    		echo "请重新输入";
-    		# code...
-    	}
+              $en=$_POST['enwords'];
+             if (!isset($en) ||strlen($en)==0) {
+
+                 echo "请重新输入";
+                 die();
+        
+            }else{ 
+                    $sql="SELECT cn FROM words WHERE en=? LIMIT 1";
+                    echo $en."的中文意思是";
+                    $preparesel=new prepare('localhost','root','','words');
+                    $preparesel->PrepareSel($sql,$en);
+            }        
+      }elseif ($_POST['dede']==2 ){
+
+         $cn=$_POST['cnwords'];
+         if (!isset($cn) ||strlen($cn)==0) {
+
+                 echo "请重新输入";
+                 die();
+        # code...
+      }else{
+        $sql="SELECT en FROM words WHERE cn=? LIMIT 1";
+        echo $cn."的中文意思是";
+        $preparesel=new prepare('localhost','root','','words');
+        $preparesel->PrepareSel($sql,$cn);
+
+      }
     }
-    $sql="SELECT cn FROM words WHERE en=? LIMIT 1";
+     
+    
+   
+   }else{
 
-    echo $en."的中文意思是";
- 
-   $preparesel=new prepare('localhost','root','','words');
-   $preparesel->PrepareSel($sql,$en);
+    echo "未选择模式";
+   }
 
 
  ?>
