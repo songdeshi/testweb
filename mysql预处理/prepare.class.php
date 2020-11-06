@@ -59,9 +59,11 @@
                   }else{
               echo "操作失败".self::$mysqli->error;
             }
+            //关闭数据库链接
+            self::$mysqli->close();
 
      }
-      public function PrepareSel($sql,$cn){
+      public function PrepareSel($sql,$en){
 
              $prepare=self::$mysqli->prepare($sql);
               //判断预编译成功与否
@@ -74,7 +76,7 @@
             }
 
              //绑定参数
-             $prepare->bind_param("s",$cn);
+             $prepare->bind_param("s",$en);
              //执行查询
              $prepare->execute();
              $result=$prepare->get_result();
@@ -89,7 +91,10 @@
                }
                # code...
              }
+             //释放资源
              $result->free();
+             //关闭数据库链接
+            self::$mysqli->close();
              
             
                # code...
