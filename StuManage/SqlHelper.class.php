@@ -21,13 +21,16 @@
 
 		{
 			if ($res=$this->conn->query($sql)){
-				if ($this->conn->affected_rows() == 0) {
-					echo "没有行受影响";# code...
+				if ($this->conn->affected_rows == 0) {
+					//操作成功但是没有行受影响
+					return 2;# code...
 				}else{
-					echo "操作成功";
+					//操作成功
+					return 1;
 				}
 			}else{
-				echo "操作失败";
+				//查询失败
+				return $this->conn->error;
 			}
 		}
 

@@ -1,16 +1,18 @@
 <?php
        require_once 'StuService.class.php';
+       require_once 'NaviGate.class.php';
        $pageNow=$_GET['pageNow'];
-       $pageSize=2;
+       $pageSize=10;
+       $naviSize=5;
 
        $stuService=new StuService();
-       $stuService->findStuInfo($pageNow,$pageSize);
+       $stuService->fenyeStuInfo($pageNow,$pageSize);
        $pageAll=$stuService->getPageAll($pageSize);
+       //引入导航
+       $naviGate=new NaviGate();
+       $naviGate->navGate("./stuinfo.php",$pageNow,$naviSize,$pageAll);
 
 
-      for ($i=1; $i <= $pageAll; $i++) { 
-         echo "<a href='stuinfo.php?pageNow=$i'>$i</a>&nbsp&nbsp&nbsp";
-      }
 ?>
 
      

@@ -1,3 +1,6 @@
+<?php 
+	require_once 'comfun.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,19 @@
 	<title>教师管理界面</title>
 </head>
 <body>
-	<a href="stuInfo.php?pageNow=1">查看学生信息</a>
+	<h1>
+	<!-- <?php
+	
+	 $id=$_GET['id'];echo "欢迎，".$id; 
+	?> -->
+	 <?php 
+	 	lastLogin();
+	  ?>	
+	 </h1>
+	<a href="stuInfo.php?pageNow=1">管理学生</a><br/>
+	<a href="addStu.php?flag=addStu">添加学生</a>
+
+	 
 
 	
 </body>
